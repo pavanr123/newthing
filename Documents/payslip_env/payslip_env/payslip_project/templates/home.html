@@ -1,0 +1,128 @@
+
+
+<html lang="en">
+<head>
+  <title>home page</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.min.js"></script>
+  <style>
+    /* Set height of the grid so .sidenav can be 100% (adjust as needed) */
+    .row.content {height: 550px}
+    
+    /* Set gray background color and 100% height */
+    .sidenav {
+      background-color: #928989;
+      height: 100%;
+      border-top-left-radius: 5px;
+      border-top-right-radius: 5px;
+      border-bottom-left-radius: 5px;
+      border-bottom-right-radius: 5px;
+      /* margin-top: 5px; */
+    }
+        
+    /* On small screens, set height to 'auto' for the grid */
+    @media screen and (max-width: 767px) {
+      .row.content {height: auto;} 
+    }
+    .navbar{
+        background-color: rgba(161, 152, 152, 0.885);
+        height: 20vh;
+        width: 225;
+    }
+    .dash{
+        font-size: 15px;
+        font-weight: bold;
+        color: white;
+    }
+    .img{
+        height: 70px;
+        width: 210px;
+    }
+    .well {
+        padding: 10px;
+        color: rgb(15, 6, 6);
+        background-color: rgb(195, 182, 182);
+    }
+
+    .well-Dashboard {
+        background-color: rgb(38, 84, 100);
+    }
+
+    .well-projects {
+        background-color: rgb(0, 255, 0); 
+    }
+
+    .well-clients {
+        background-color: orange;
+    }
+
+    .well-tasks {
+        background-color: pink;
+    }
+
+    .well-employees {
+        background-color: lightcoral;
+    }
+    </style>
+</head>
+<body>
+    <div>
+        <nav class="navbar navbar-light bg-light navbar">
+            <a class="navbar-brand" href="#">
+                <!-- <img  src="https://d1tgh8fmlzexmh.cloudfront.net/ccbp-responsive-website/navbar-logo-img.png" class="img d-inline-block align-top" alt="LOGO"/> -->
+                <img src="https://pathbreakertech.com/uploads/settings/general_settings_1675415847_112573057.png" class=" p-1 img d-inline-block aligin-top" alt="LOGO">
+            </a>
+        </nav>
+    </div>
+    <div class="container-fluid">
+        <div class="row content">
+            <div class="col-sm-2 sidenav hidden-xs">
+                <ul class="nav nav-pills nav-stacked">
+                    <!-- class="active" -->
+                    <li><a class="dash" href="/home">Dashboard</a></li>    
+                    <li><a class="dash" href="/get">View all Employees</a></li>
+                    <!-- <li><a class="dash" href="/add">Add Employee</a></li> -->
+                    <li><a class="dash" href="/filter">Employee</a></li>
+                </ul><br>
+            </div>
+            <br>
+            <div class="col-sm-10">
+            <div class="well">
+                <h4>WELLCOME ADMIN</h4>
+                <p>Dashboard</p>
+            </div>
+            <div class="row">
+                <div class="col-sm-3">
+                <div class="well">
+                    <h4>50</h4>
+                    <p>projects</p> 
+                </div>
+                </div>
+                <div class="col-sm-3">
+                <div class="well">
+                    <h4>50</h4>
+                    <p>Clients</p>
+                </div>
+                </div>
+                <div class="col-sm-3">
+                    <div class="well">
+                        <h4>250</h4>
+                        <p>Tasks</p> 
+                    </div>
+                </div>
+                <div class="col-sm-3">
+                    <div class="well">
+                        <h4>100</h4>
+                        <p>Employees</p>
+                    </div>                      
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
+

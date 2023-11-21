@@ -1,0 +1,174 @@
+
+<html lang="en">
+<head>
+  <title>filter emp</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+  <style>
+    /* Set height of the grid so .sidenav can be 100% (adjust as needed) */
+    .row.content {height: 550px}
+    
+    /* Set gray background color and 100% height */
+    .sidenav {
+      background-color: #112de1;
+      height: 100%;
+      border-top-left-radius: 5px;
+      border-top-right-radius: 5px;
+      border-bottom-left-radius: 5px;
+      border-bottom-right-radius: 5px;
+      margin-top: 10px;
+    }
+        
+    /* On small screens, set height to 'auto' for the grid */
+    @media screen and (max-width: 767px) {
+      .row.content {height: auto;} 
+    }
+    .navbar{
+        background-color: rgba(245, 245, 245, 0.912) !important;
+        height: 15vh;
+        width: 230;
+    }
+    .dash{
+        font-size: 15px;
+        font-weight: bold;
+        color: rgb(255, 255, 255);
+    }
+    .img{
+        height: 70px;
+        width: 210px;
+    }
+    .form{
+        background-color: rgb(204, 210, 213);
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+        border-radius: 10px;
+        width: 50vw;
+    }
+    body {
+  background-image: url('https://wallpaperaccess.com/full/4321838.jpg');
+}
+  </style>
+</head>
+<body>
+    <div>
+        <nav class=" d-flex flex-row justify-content-start navbar navbar-light bg-light navbar">
+                <img src="https://pathbreakertech.com/uploads/settings/general_settings_1675415847_112573057.png" class=" p-1 img d-inline-block aligin-top" alt="LOGO">
+        </nav>
+    </div>
+    <div class="container-fluid">
+        <div class="row content">
+            <div class="col-sm-2 sidenav hidden-xs">
+                <ul class="nav nav-pills nav-stacked">
+                    <!-- class="active" -->
+                    <li><a class="dash" href="/home">Dashboard</a></li>    
+                    <li><a class="dash" href="/get">View all Employees</a></li>
+                    <!-- <li><a class="dash" href="/add">Add Employee</a></li> -->
+                    <li><a class="dash" href="/filter">Employee</a></li>
+                </ul><br>
+            </div>
+            <br>
+            <div class="col-sm-10 text-center">
+                <div class="m-5 form p-5">
+                    <form action="/filter" method="POST">
+                      {% csrf_token %}
+                        <label style="font-weight: bold;" for="emp_name">Employee Name:</label>
+                        <input type="text" id="emp_name" name="employee_name" /><br><br>
+                        <label style="font-weight: bold;" for="month">Month:</label>
+                        <select name="month" id="month">
+                            <option value="" disabled selected hidden>Select Month</option>
+                            <option value="January">January</option>
+                            <option value="February">February</option>
+                            <option value="March">March</option>
+                            <option value="April">April</option>
+                            <option value="May">May</option>
+                            <option value="June">June</option>
+                            <option value="July">July</option>
+                            <option value="August">August</option>
+                            <option value="September">September</option>
+                            <option value="October">October</option>
+                            <option value="November">November</option>
+                            <option value="December">December</option>
+                        </select><br>
+                        <label style="font-weight: bold;" for="present">Present Days:</label>
+                        <input type="text" id="present" name="present" />
+                        <label style="font-weight: bold;" for="absent">Absent Days:</label>
+                        <input type="text" id="absent" name="absent" /><br>
+                        <button type="submit" class="btn btn-primary mt-4">VIEW</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- <label style="font-weight: bold; " for="emp_name">Employee Name:</label>
+<input type="text" id="emp_name" name="employee_name"/><br><br>
+ <label style="font-weight: bold; " for="emp_id">Employee ID:</label>
+<input type="text" id="emp_id" name="employee_id"/><br><br> -->
+<!-- <label style="font-weight: bold;" for="month">Month:</label>
+      <select name="month" id="month">
+          <option value="" disabled selected hidden>Select Month</option>
+          <option value="January">January</option>
+          <option value="February">February</option>
+          <option value="March">March</option>
+          <option value="April">April</option>
+          <option value="May">May</option>
+          <option value="June">June</option>
+          <option value="July">July</option>
+          <option value="August">August</option>
+          <option value="September">September</option>
+          <option value="October">October</option>
+          <option value="November">November</option>
+          <option value="December">December</option>
+      </select><br>
+<label style="font-weight: bold; " for="month">Present Days:</label>
+<input type="text" id="month" name="present"/>
+<label style="font-weight: bold; " for="month">Absent Days:</label>
+<input type="text" id="month" name="absent"/><br>
+<button type="submit" class="btn btn-primary mt-4">VIEW</button>
+
+
+
+
+ --> 
+
+<!-- <!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+  </head>
+  <body>
+    <div class="m-3">
+        <form action="/filter" method="POST">
+          {% csrf_token %}
+          <label style="font-weight: bold; " for="emp_id">Employee ID:</label><br>
+          <input type="text" id="emp_id" name="employee_id"/><br>
+          <label style="font-weight: bold; " for="emp_name">Employee Name:</label><br>
+          <input type="text" id="emp_name" name="employee_name"/><br>
+          <button type="submit" class="btn btn-primary mt-4">submit</button>
+      </form>
+      </div>
+  </body>
+</html> -->
+
+
+

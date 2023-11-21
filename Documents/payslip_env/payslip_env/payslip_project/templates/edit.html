@@ -1,0 +1,263 @@
+
+<html lang="en">
+<head>
+  <title>edit emp</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+  <style>
+    /* Set height of the grid so .sidenav can be 100% (adjust as needed) */
+    .row.content {height: 550px}
+   
+    /* Set gray background color and 100% height */
+    .sidenav {
+      background-color: #0b2ef2;
+      height: 100%;
+      border-top-left-radius: 5px;
+      border-top-right-radius: 5px;
+      border-bottom-left-radius: 5px;
+      border-bottom-right-radius: 5px;
+      margin-top: 10px;
+    }
+        
+    /* On small screens, set height to 'auto' for the grid */
+    @media screen and (max-width: 767px) {
+      .row.content {height: auto;} 
+    }
+    .navbar{
+        background-color: rgba(3, 3, 3, 0.928) !important;
+        height: 15vh;
+    }
+
+    .dash{
+        font-size: 15px;
+        font-weight: bold;
+        color: rgb(248, 247, 247);
+    }
+    .img{
+        height: 70px;
+        width: 210px;
+    }
+    .form{
+        background-color: rgba(232, 228, 224, 0.696);
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+        border-radius: 10px;
+        
+        }
+    .btnn{
+        font-size: 15px;
+        margin: 14px;
+        padding: 6px;
+    }
+    .heading{
+        font-size: 30px;
+        font-family:'Times New Roman', Times, serif;
+        font-weight: bold;
+    }
+    form  { display: table;      }
+    p     { display: table-row;  }
+    label { display: table-cell; }
+    input { display: table-cell; }
+    body {
+  background-image: url('https://wallpaperaccess.com/full/4321838.jpg');
+}
+  </style>
+</head>
+<body>
+    <div>
+        <nav class=" d-flex flex-row justify-content-start navbar navbar-light navbar">
+                <!-- <img  src="https://d1tgh8fmlzexmh.cloudfront.net/ccbp-responsive-website/navbar-logo-img.png" class=" p-1 img d-inline-block align-top" alt="LOGO"/> -->
+                <img src="https://pathbreakertech.com/uploads/settings/general_settings_1675415847_112573057.png" class=" p-1 img d-inline-block aligin-top" alt="LOGO">
+        </nav>
+    </div>
+    <div class="container-fluid">
+        <div class="row content">
+            <div class="col-sm-2 sidenav hidden-xs">
+                <ul class="nav nav-pills nav-stacked">
+                    <!-- class="active" -->
+                    <li><a class="dash" href="/home">Dashboard</a></li>    
+                    <li><a class="dash" href="/get">View all Employees</a></li>
+                    <!-- <li><a class="dash" href="/add">Add Employee</a></li> -->
+                    <li><a class="dash" href="/filter">Employee</a></li>
+                </ul><br>
+            </div>
+            <br>
+            <div class="col-sm-10 text-center">
+                <div class="m-3 form">
+                    <h1 class="p-4 mt-3 heading">EDIT EMPLOYEE</h1>   
+                  <form action="/update/{{emp.id}}" method="POST">
+                    <table>
+                    {% csrf_token %}
+                    <div class="d-flex flex-row justify-content-around">
+                        <div class="p-5">
+                            <p>
+                                <label style="font-size: 15px; " for="name">Employee ID:</label>
+                                <input style="font-size: 15px;" type="text" id="name" name="employee_id" value="{{emp.employee_id}}"/>
+                            </p>
+                            <p>
+                                <label style="font-size: 15px;" for="class">Employee Name:</label>
+                                <input style="font-size: 15px;" type="text" id="class" name="employee_name" value="{{emp.employee_name}}"/>
+                            </p>
+                            <p>
+                                <label style="font-size: 15px;"  for="section">Gender:</label>
+                                <input style="font-size: 15px;" type="text" id="section" name="gender" value="{{emp.gender}}"/>
+                            </p>
+                            <p>
+                                <label style="font-size: 15px;"  for="section">Date of Birth:</label>
+                                <input style="font-size: 15px;" type="text" id="section" name="date_of_birth" value="{{emp.date_of_birth}}"/>
+                            </p>
+                            <p>
+                                <label style="font-size: 15px;" for="marks">Department:</label>
+                                <input style="font-size: 15px;" type="text" id="marks" name="department" value="{{emp.department}}">
+                            </p>
+                            <p>
+                                <label style="font-size: 15px;" for="result">Designation:</label>
+                                <input style="font-size: 15px;" type="text" id="result" name="designation" value="{{emp.designation}}"/>
+                            </p>
+                            <p>
+                                <label style="font-size: 15px;" for="result">Bank:</label>
+                                <input style="font-size: 15px;"type="text" id="result" name="bank" value="{{emp.bank}}"/>
+                            </p>
+                            <p>
+                                <label style="font-size: 15px;" for="result">IFSC Code:</label>
+                                <input style="font-size: 15px;" type="text" id="result" name="ifsc_code" value="{{emp.ifsc_code}}"/>
+                            </p> 
+                            <p>
+                                <label style="font-size: 15px;" for="result">Pan card Number:</label>
+                                <input style="font-size: 15px;"type="text" id="result" name="pan_card_number" value="{{emp.pan_card_number}}"/>
+                            </p>
+                        </div>
+                        <div class="m-5">
+                            <p>
+                                <label style="font-size: 15px;" for="result">UAN Number:</label>
+                                <input style="font-size: 15px;" type="text" id="result" name="uan_number" value="{{emp.uan_number}}"/><br>
+                            </p>
+                            <p>
+                                <label style="font-size: 15px;" for="result">PF Number:</label>
+                                <input style="font-size: 15px;" type="text" id="result" name="pf_number" value="{{emp.pf_number}}"/><br>
+                            </p>
+                            <p>
+                                <label style="font-size: 15px;" for="result">Paid Days:</label>
+                                <input style="font-size: 15px;" type="text" id="result" name="paid_days" value="{{emp.paid_days}}"/><br>
+                            </p>
+                            <p>
+                                <label style="font-size: 15px;" for="result">Paid Leaves:</label>
+                                <input style="font-size: 15px;" type="text" id="result" name="paid_leaves" value="{{emp.paid_leaves}}"/><br>
+                            </p>
+                            <p>
+                                <label style="font-size: 15px;" for="result">Date of Joining:</label>
+                                <input style="font-size: 15px;" type="text" id="result" name="dateofjoining" value="{{emp.date_of_jioning}}"/><br>
+                            </p>
+                            <p>
+                                <label style="font-size: 15px;" for="result">Account Number:</label>
+                                <input style="font-size: 15px;" type="text" id="result" name="account_number" value="{{emp.account_number}}"/><br>
+                            </p>
+                            <p>
+                                <label style="font-size: 15px;" for="result">Location:</label>
+                                <input style="font-size: 15px;" type="text" id="result" name="location" value="{{emp.location}}"/><br>
+                            </p>
+                            <p>
+                                <label style="font-size: 15px;" for="result">Basic Salary:</label>
+                                <input style="font-size: 15px;" type="text" id="result" name="basic" value="{{emp.basic}}"/><br>
+                            </p>
+                        </div>
+                    </div>
+                    <div class="text-center">
+                        <button type="submit" class="btnn btn btn-primary ">submit</button>
+                    </div>
+                </table>
+                  </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
+
+
+
+
+
+<!-- <html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+  <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+  <style>
+    /* Set height of the grid so .sidenav can be 100% (adjust as needed) */
+    .row.content {height: 550px}
+    
+    /* Set gray background color and 100% height */
+    .sidenav {
+      background-color: #302d2d;
+      height: 100%;
+      border-top-left-radius: 5px;
+      border-top-right-radius: 5px;
+      border-bottom-left-radius: 5px;
+      border-bottom-right-radius: 5px;
+      margin-top: 10px;
+    }
+        
+    /* On small screens, set height to 'auto' for the grid */
+    @media screen and (max-width: 767px) {
+      .row.content {height: auto;} 
+    }
+    .navbar{
+        background-color: rgb(64, 231, 236) !important;
+        height: 15vh;
+    }
+    .dash{
+        font-size: 15px;
+        font-weight: bold;
+        color: white;
+    }
+    .img{
+        height: 60px;
+        width: 60px;
+    }
+    .form{
+        background-color: rgb(243, 214, 198);
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+        border-radius: 10px;
+        
+    }
+
+    
+  </style>
+</head>
+<body>
+    <div>
+        <nav class="d-flex flex-row justify-content-start na navbar-light bg-light navbar">
+                <img  src="https://d1tgh8fmlzexmh.cloudfront.net/ccbp-responsive-website/navbar-logo-img.png" class="img d-inline-block align-top" alt="LOGO"/>
+        </nav>
+    </div>
+    <div class="container-fluid">
+        <div class="row content">
+            <div class="col-sm-2 sidenav hidden-xs">
+                <ul class="nav nav-pills nav-stacked">
+                    <li><a class="dash" href="/home">Dashboard</a></li>    
+                    <li><a class="dash" href="/get">View all Employees</a></li>
+                    <li><a class="dash" href="/add">Add Employee</a></li> 
+                    <li><a class="dash" href="/filter">Employee</a></li>
+                </ul><br>
+            </div>
+            <br>
+            <div class="col-sm-9">
+            </div>
+        </div>
+        </div>
+    </div>
+</body>
+</html> -->
+
+
+

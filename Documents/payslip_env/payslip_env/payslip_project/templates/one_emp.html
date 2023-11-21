@@ -1,0 +1,877 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" crossorigin="anonymous"></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.4.0/jspdf.umd.min.js"></script>
+  </head> 
+  <body>
+    <title>payslip</title>
+<style>
+* {
+  box-sizing: border-box;
+}
+
+.row {
+  margin-left:5px;
+  margin-right:5px;
+}
+  
+.column {
+  float: left;
+  width: 50%;
+  padding: 3px;
+}
+
+/* Clearfix (clear floats) */
+.row::after {
+  content: "";
+  clear: both;
+  display: table;
+}
+
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+  width: 100%;
+  border: 1px solid #ddd;
+}
+
+th, td {
+  text-align: left;
+  padding: 5px;
+}
+
+tr:nth-child(even) {
+  background-color: #f2f2f2f2;
+}
+.img{
+    height: 80px;
+    width: 210px;
+    margin: 20px;
+}
+  .btn-primary {
+    background-color: blue;
+    color: white;
+  }
+
+  .btn-danger {
+    background-color: red;
+    color: white;
+  }
+.h2{
+  font-weight: 600;
+  font-family: 'Times New Roman ',serif;
+}
+.h4{
+  font-weight: 700;
+  text-decoration: underline;
+  font-size: medium;
+}
+.con{
+  border:2px solid #222121;
+  padding: 5px;
+}
+.watermark {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  opacity: 0.2;
+  z-index: 9999;
+  height: 40%;
+  width: 100%;
+}
+</style>
+</head>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.9.2/html2pdf.bundle.min.js"></script>
+<body>
+  <img class="watermark" src="https://pathbreakertech.com/uploads/settings/general_settings_1675415847_112573057.png" alt="Logo Watermark">
+  <div class="con">
+    <div class="d-flex flex-row justify-content-between">
+          <!-- <img class="img" src="https://d1tgh8fmlzexmh.cloudfront.net/ccbp-responsive-website/navbar-logo-img.png" alt=""/> -->
+          <img src="https://pathbreakertech.com/uploads/settings/general_settings_1675415847_112573057.png" class=" p-1 img d-inline-block aligin-top" alt="LOGO">
+          <div>
+              <p>PATHBREAKERTECH</p>
+              <P>Nasuja,plot.36,2nd floor,Shilpi Valley,Hi-tech city, Madhapur</P>
+              <p>Hyderbad,Telagana-500081</p>
+          </div>
+      </div>
+      {% if month %}
+        <h2 class='h2'>Pay Slip For The Month of {{month}}</h2>
+      {% endif %}
+      <!-- {%if absent%}
+      <h3>{{absent}}</h3>
+      {% endif%}  -->
+        <h1 class="h4">Employee Details</h1>
+        <div class="row">
+          <div class="column">
+            <table>
+              {% for emp in emps %}
+              <tr>
+                <th>Employee ID</th>
+                <td>{{ emp.employee_id }}</td>
+              </tr>
+              <tr>
+                <th>Employee Name</th>
+                <td>{{ emp.employee_name }}</td>
+              </tr>
+              <tr>
+                <th>Gender</th>
+                <td>{{ emp.gender }}</td>
+              </tr>
+              <tr>
+                <th>Date of Birth</th>
+                <td>{{ emp.date_of_birth }}</td>
+              </tr>
+              <tr>
+                <th>Department</th>
+                <td>{{ emp.department }}</td>
+              </tr> 
+              <tr>
+                <th>Designation</th>
+                <td>{{ emp.designation }}</td>
+              </tr>
+              <tr>
+                <th>Bank</th>
+                <td>{{ emp.bank }}</td>
+              </tr> 
+              <tr>
+                <th>IFSC code</th>
+                <td>{{ emp.ifsc_code }}</td>
+              </tr> 
+            </table>
+            <table>
+              <tr>
+                <th>EARNINGS</th>
+              </tr>
+              <tr>
+                <th>DESCRIPTION</th>
+                <th>AMOUNT</th>
+              </tr>
+              <tr>
+                <th>Basic</th>
+                <td>{{ emp.basic }}</td>
+              </tr>                                                
+              <tr>
+                <th>House Rent Allowance (HRA)</th>
+                <td>{{ emp.house_rent_allowances }}</td>
+              </tr>
+              <tr>
+                <th>Medical Allowance</th>
+                <td>{{ emp.medical_allowance }}</td>
+              </tr>
+              <tr>
+                <th>Conveyance</th>
+                <td>{{ emp.conveyance }}</td>
+              </tr>
+              <tr>
+                <th>Special Allowance</th>
+                <td>{{ emp.special_allowance }}</td>
+              </tr>
+              <tr>
+                <th>Phone Allowance</th>
+                <td>{{ emp.phone_allowance }}</td>
+              </tr>
+              <tr>
+                <th>travel_allowance</th>
+                <td>{{ emp.travel_allowance }}</td>
+              </tr>
+              <tr>
+                <th>Employee Referral Scheme</th>
+                <td>{{ emp.employee_referral_scheme }}</td>
+              </tr>
+              <tr>
+                <th>Bonus</th>
+                <td>{{ emp.bonus }}</td>
+              </tr>
+              <tr>
+                <th>Gross Earning (A)</th>
+                <td>{{gross_earning}}</td>
+              </tr>
+            </table>
+            <table>
+              <tr>
+                <th>Net Pay (A - B)</th>
+                <th>{{ net_pay }}</th>
+              </tr>
+            </table>
+          </div>
+          <div class="column">
+            <table>
+              <tr>
+                <th>Pan Card Number</th>
+                <td>{{ emp.pan_card_number }}</td>
+              </tr>
+              <tr>
+                <th>UAN Number</th>
+                <td>{{ emp.uan_number }}</td>
+              </tr>
+              <tr>
+                <th>PF Number</th>
+                <td>{{ emp.pf_number }}</td>
+              </tr>
+              <tr>
+                {% if total_days %}
+                <th>Paid Days</th>
+                <td>{{ total_days }}</td>
+                {% endif %}
+              </tr>
+              <tr>
+                {% if absent != 0%}
+                <th>Paid Leaves</th>
+                <td>{{ absent }}</td>
+                {% endif %}
+              </tr>
+              <tr>
+                <th>Date of Joining</th>
+                <td>{{ emp.date_of_jioning }}</td>
+              </tr>
+              <tr>
+                <th>Account Number</th>
+                <td>{{ emp.account_number }}</td>
+              </tr>
+              <tr>
+                <th>Location</th>
+                <td>{{ emp.location }}</td>
+              </tr>
+            </table>
+            <table>
+              <tr>
+                <th>DEDUCTIONS</th>
+              </tr>
+              <tr>
+                <th>DESCRIPTION</th>
+                <th>AMOUNT</th>
+              </tr>
+              <tr>
+                <th>Professional Tax</th>
+                <td>{{ emp.professional_tax }}</td>
+              </tr>
+              <tr>
+                <th>Provident Fund</th>
+                <td>{{ emp.provident_fund }}</td>
+              </tr>
+              <tr>
+                <th>T.D.S</th>
+                <td>{{ emp.t_d_s }}</td>
+              </tr>
+              <tr>
+                {% if loss_of_pay%}
+                <th>Loss of Pay</th>
+                <td>{{ loss_of_pay }}</td>
+                {% endif%}
+              </tr>
+              <tr>
+                <td></td>  
+                <td></td>
+              </tr>
+              <tr>
+                <td></td>
+                <td></td>
+              </tr>
+              <tr>
+                <td></td>
+                <td></td>
+              </tr>
+              <tr>
+                <td></td>
+                <td></td>
+              </tr>
+              <tr>
+                <td></td>
+                <td></td>
+              </tr>
+              <tr>
+                <td></td>
+                <td></td>
+              </tr>
+              <tr>
+                <td></td>
+                <td></td>
+              </tr>
+            </table>
+            <table>
+              <tr>
+                <th>Gross Deductions (B)</th>
+                <td>{{gross_deductions}}</td>
+              </tr>
+              {% endfor %}
+            </table>
+          </div>
+        </div>
+        <p>Remarks: This is acomputer generated Pay slip and not require authentication</p>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.9.2/html2pdf.bundle.js"></script>
+<div class="col-xl-3 float-end">
+  <a id="printButton" class="btn btn-primary text-capitalize border-0" data-mdb-ripple-color="dark"><i class="fas fa-print"></i> Print</a>
+  <a id="exportButton" class="btn btn-danger text-capitalize" data-mdb-ripple-color="dark"><i class="far fa-file-pdf"></i> Export</a>
+</div>
+<script>
+  // Function to handle the print button click event
+  document.getElementById("printButton").addEventListener("click", function() {
+    window.print();
+  });
+  // Function to handle the export button click event
+  document.getElementById("exportButton").addEventListener("click", function() {
+    html2pdf().from(document.body).save('exported_document.pdf');
+  });
+</script>
+      </body>
+      </html>
+      
+      <!-- document.getElementById("print").style.display="none"document.getElementById("print").style.display="block" -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <!-- <h4>Empolyee details</h4>
+  <div class="row">
+    <div class="column">
+      <table>
+        {%for emp in emps%}
+        <tr>
+          <th>Empolye ID</th>
+          <td>{{emp.employee_id}}</td>
+        </tr>
+        <tr>
+          <th>Employee Name</th>
+          <td>{{emp.employee_name}}</td>
+        </tr>
+        <tr>
+          <th>Gender</th>
+          <td>{{emp.gender}}</td>
+        </tr>
+        <tr>
+          <th>Date of Birth</th>
+          <td>{{emp.date_of_birth}}</td>
+        </tr>
+        <tr>
+          <th>Department</th>
+          <td>{{emp.department}}</td>
+        </tr> 
+        <tr>
+          <th>Desgination</th>
+          <td>{{emp.designation}}</td>
+        </tr>
+      <tr>
+          <th>Bank</th>
+          <td>{{emp.bank}}</td>
+        </tr> 
+          <tr>
+          <th>IFSC code</th>
+          <td>{{emp.ifsc_code}}</td>
+        </tr> 
+        <table>
+        <tr>
+        <th>EARNINGS</th>
+        </tr>
+        <tr>
+        <th>DESCRIPTION</th>
+        <th>AMMOUNT</th>
+        </tr>
+        <tr>
+        <th>Basic</th>
+        <td>{{emp.basic}}</td>
+        </tr>                                                
+        <tr>
+        <th>House Rent Allowance(HRA)</th>
+        <td>{{emp.house_rent_allowances}}</td>
+        </tr>
+          <tr>
+        <th>Medical Allowance</th>
+        <td>{{emp.medical_allowance}}</td>
+        </tr>
+          <tr>
+        <th>Conveyance</th>
+        <td>{{emp.conveyance}}</td>
+        </tr>
+          <tr>
+        <th>Special Allowance</th>
+        <td>{{emp.special_allowance}}</td>
+        </tr>
+          <tr>
+        <th>Phone Allowance</th>
+        <td>{{emp.phone_allowance}}</td>
+        </tr>
+          <tr>
+        <th>Salary Arrears</th>
+        <td>{{emp.salary_arrears}}</td>
+        </tr>
+          <tr>
+        <th>Employee Referral Scheme</th>
+        <td>{{emp.employee_referral_scheme}}</td>
+        </tr>
+        <tr>
+        <th>Bonus</th>
+        <td>{{emp.bonus}}</td>
+        </tr>
+          <tr>
+        <th>Gross Earning(A)</th>
+        <td>15000</td>
+        </tr>
+          <tr>
+        <th>Net Pay(A -B)</th>
+        <td>132493</td>
+        </tr>
+      </table>
+    </div>
+    <div class="column">
+      <table>
+        <tr>
+          <th>Pan card number</th>
+          <td>{{emp.pan_card_number}}</td>
+        </tr>
+        <tr>
+          <th>UAN Nunber</th>
+          <td>{{emp.uan_number}}</td>
+        </tr>
+        <tr>
+          <th>PF number</th>
+          <td>{{emp.pf_number}}</td>
+        </tr>
+        <tr>
+          {%if total_days%}
+          <th>Paid days</th>
+          <td>{{total_days}}</td>
+          {% endif %}
+        </tr>
+        <tr>
+          {% if absent%}
+          <th>Paid leaves</th>
+          <td>{{absent}}</td>
+          {% endif %}
+        </tr>
+        <tr>
+          <th>Date of joining</th>
+          <td>{{emp.date_of_jioning}}</td>
+        </tr>
+        <tr>
+          <th>Account number</th>
+          <td>{{emp.account_number}}</td>
+        </tr>
+            <tr>
+          <th>Location</th>
+          <td>{{emp.location}}</td>
+        </tr>
+      </table>
+      <table>
+      <tr>
+      <th>DEDUCTIONS</th>
+      </tr>
+      <tr>
+      <th>DESCRIPTION</th>
+      <th>AMMOUNT</th>
+      </tr>
+    <tr>
+        <th>Proessional Tax</th>
+        <td>{{emp.professional_tax}}</td>
+      </tr>
+        <tr>
+        <th>Provident fund</th>
+        <td>{{emp.provident_fund}}</td>
+        </tr>
+      <tr>
+        <th>T.D.S</th>
+        <td>{{emp.t_d_s}}</td>
+      </tr>
+      <tr>
+      <th>Loss of pay</th>
+      <td>{{emp.loss_of_pay}}</td>
+      </tr>
+        <tr>
+      <td> </td>  
+      <td>  </td>
+        </tr>
+        <tr>
+      <td>  </td>
+      <td>  </td>
+        </tr>
+        <tr>
+      <td>  </td>
+      <td>  </td>
+        <tr>
+        </tr>
+        <tr>
+      <td>  </td>
+      <td>  </td>
+        </tr>
+        <tr>
+      <td>  </td>
+      <td>  </td>
+        </tr>
+        <tr>
+      <td>  </td>
+      <td>  </td>
+        </tr>
+      <tr>
+      <td>  </td>
+      <td>  </td>
+        </tr>
+      <tr>
+      <td>  </td>
+      <td>  </td>
+        </tr>
+        <tr>
+      <td>  </td>
+      <td>  </td>
+        </tr>
+          <tr>
+      <td>Gross Deductions(B)</td>
+      <td></td>
+        </tr>
+        {% endfor %}
+  </table>
+    </div>
+  </div>
+</div>
+</body>
+</html>
+ -->
+
+
